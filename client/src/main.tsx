@@ -25,6 +25,7 @@ createRoot(document.getElementById('root')!).render(
       theme="light"
       transition={Bounce}
     />
+    
     <CookiesProvider>
       <PersistGate persistor={persistor}>
         <Provider store={store}>

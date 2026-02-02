@@ -15,39 +15,77 @@ import ResetPassword from './components/pages/resetPassword';
 import VerifyOTP from './components/pages/verifyOtp';
 import Loader from './components/UI/loader';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { ClientLayout } from './components/pages/client/clientLayout';
+import Home from './components/pages/client/home';
+import Shop from './components/pages/client/shop';
+import ProductDetails from './components/pages/client/prouctDetails';
+import Cart from './components/pages/client/cart';
+import Checkout from './components/pages/client/checkout';
+import OrderTracking from './components/pages/client/orderTracking';
+import UserDashboard from './components/pages/client/userDashboard';
+import EditProfile from './components/pages/client/editProfile';
 
 const App = () => {
+
   return (
-    <Router>
-      <Routes>
+    <>
 
-        <Route path="/" element={<Navigate to="/login" />} />
+      <Toaster
+        position="top-center"
+        reverseOrder={false}
+        toastOptions={{
+          // Define default premium styles here
+          style: {
+            background: '#333',
+            color: '#fff',
+          }
+        }}
+      />
 
-        <Route path="*" element={<ErrorPage errorCode={404} />} />
+      <Router>
+        <Routes>
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/forgot-password" element={<ForgotPassword />} />
-        <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/verify-otp" element={<VerifyOTP />} />
-        <Route path="/verify-user" element={<VerifyOTP />} />
-        <Route path="/logout" element={<Logout />} />
-        <Route path="/loader" element={<Loader />} />
+          <Route path="/" element={<Navigate to="/login" />} />
 
-        <Route path="/admin" element={<AdminLayout />}>
-          <Route index element={<Navigate to="/admin/dashboard" replace />} />
-          <Route path="dashboard" element={<Dashboard />} />
-          <Route path="categories" element={<Categories />} />
-          <Route path="products" element={<Products />} />
-          <Route path="product/add" element={<ProductForm />} />
-          <Route path="product/edit/:id" element={<ProductForm />} />
-          <Route path="trash" element={<Trash />} />
-          <Route path="users" element={<Users />} />
-          <Route path="admins" element={<Admins />} />
-        </Route>
+          <Route path="*" element={<ErrorPage errorCode={404} />} />
 
-      </Routes>
-    </Router>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/verify-otp" element={<VerifyOTP />} />
+          <Route path="/verify-user" element={<VerifyOTP />} />
+          <Route path="/logout" element={<Logout />} />
+          <Route path="/loader" element={<Loader />} />
+
+          <Route path="/client" element={<ClientLayout />}>
+            <Route index element={<Navigate to="/client/home" replace />} />
+            <Route path="home" element={<Home />} />
+            <Route path="shop" element={<Shop />} />
+            <Route path="productDetails" element={<ProductDetails />} />
+            <Route path="cart" element={<Cart />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="dashboard" element={<UserDashboard />} />
+            <Route path="orderTracking" element={<OrderTracking />} />
+            <Route path="editProfile" element={<EditProfile />} />
+          </Route>
+
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index p />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="categories" element={<Categories />} />
+            <Route path="products" element={<Products />} />
+            <Route path="product/add" element={<ProductForm />} />
+            <Route path="product/edit/:id" element={<ProductForm />} />
+            <Route path="trash" element={<Trash />} />
+            <Route path="users" element={<Users />} />
+            <Route path="admins" element={<Admins />} />
+          </Route>
+
+        </Routes>
+      </Router>
+    </>
   );
 };
 
